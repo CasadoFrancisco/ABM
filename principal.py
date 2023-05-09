@@ -1,10 +1,10 @@
 from BD.conexion import Conexion
 
-def menuPricipal():
+def menuPrincipal():
     continuar = True
-    while(continuar):
-       opcionCorrecta = False
-       while(not opcionCorrecta):
+    while continuar:
+        opcionCorrecta = False
+        while not opcionCorrecta:
             print("============= MENU PRINCIPAL =============")
             print("1*- Alta de Profesor")
             print("2*- Alta de Asignatura")
@@ -16,7 +16,7 @@ def menuPricipal():
             print("==========================================")
             opcion = int(input("Seleccione una opcion: "))
         
-            if opcion < 1 | opcion > 7:
+            if opcion < 1 or opcion > 7:
                 print("opcion incorrecta, ingrese nuevamente...")
             elif opcion == 7:
                 continuar = False
@@ -25,19 +25,15 @@ def menuPricipal():
             else:
                 opcionCorrecta = True
                 ejecutarOpcion(opcion)
-            
 
-            
+    def ejecutarOpcion(opcion):
+        conexion = Conexion()
+        if opcion == 1:
+            print("============ ALTA DE PROFESOR ============")
+            nombre = input("Ingrese el nombre del profesor: ")
+            apellido = input("Ingrese el apellido del profesor: ")
+            asignatura = input("Ingrese la asignatura del profesor: ")
+            conexion.crearProfesor(nombre, apellido, asignatura)    
+  
    
-def ejecutarOpcion(opcion):
-   conexion = Conexion()
-
-   if opcion == 1:
-    print("============ ALTA DE PROFESOR ============")
-    nombre = input("Ingrese el nombre del profesor: ")
-    apellido = input("Ingrese el apellido del profesor: ")
-    asignatura = input("Ingrese la asignatura del profesor: ")
-    conexion.crearProfesor(nombre, apellido, asignatura)
-
-
-menuPricipal()
+menuPrincipal()
