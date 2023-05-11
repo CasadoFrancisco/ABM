@@ -41,7 +41,7 @@ def ejecutarOpcion(opcion):
         print("opcion 5")
     elif opcion == 6:
         print("opcion 6")
-    
+
 
   
    

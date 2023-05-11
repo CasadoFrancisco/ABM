@@ -15,14 +15,16 @@ class Conexion():
             print(f"Error al intentar la conexion: {0}".format(ex))
     
     def listarCursos(self):
+       
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                cursor.execute("SELECT * FROM curso ORDER BY nombre")
+                cursor.execute("SELECT * FROM profesores")
                 resultados = cursor.fetchall()
                 return resultados
             except Error as ex:
                 print(f"Error al intentar la conexion: {0}".format(ex))
-
+    
+   
 
     
