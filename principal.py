@@ -1,6 +1,7 @@
 from BD.conexion import Conexion
 import funciones
 
+
 def menuPrincipal():
     continuar = True
     while continuar:
@@ -13,13 +14,18 @@ def menuPrincipal():
             print("4*- Inscripcion de Profesores ")
             print("5*- Inscripcion asignatura ")
             print("6*- Inscripcion de alumnos")
-            print("7*- Salir")
+            print("7*- Asignar asignatura a profesor")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("10*- Salir")
             print("==========================================")
             opcion = int(input("Seleccione una opcion: "))
         
-            if opcion < 1 or opcion > 7:
+            if opcion < 1 or opcion > 10:
                 print("opcion incorrecta, ingrese nuevamente...")
-            elif opcion == 7:
+            elif opcion == 10:
                 continuar = False
                 print("Gracias por usar este sistema")
                 break
@@ -95,6 +101,13 @@ def ejecutarOpcion(opcion):
             conexion.registrarAlumno(alumnos)
         except Exception as e:
            print("Ocurrio un error al agregar un alumno!", e)
+
+    elif opcion == 7:
+
+        try:
+            print
+        except Exception as e:
+            print("Ocurrio un error al agregar un alumno!", e)
 
 
   

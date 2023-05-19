@@ -17,7 +17,7 @@ def listarAsignaturas(asignaturas):
     print(" ")
 
 def listarAlumno(Alumnos):
-    print("Alumnos")
+    print("Alumnos: ")
     contador = 1
     for cur in Alumnos:
         datos = "{0}. id: {1} | Nombre: {2} | Apellido: {3}"
@@ -27,7 +27,7 @@ def listarAlumno(Alumnos):
 
 
 
-
+#----------------------------------------------------------------------
 
 
 
@@ -42,16 +42,12 @@ def registrarAsignatura():
             id = int(id)
         else:
             print("El ID debe ser un numero de 4 digitos, Ingrese nuevamente")
-
     nombre = input("Ingrese Nombre de materia: ")
     turno = input("Ingrese turno: (ma;ana o tarde )")
     
-
     asignatura = (id, nombre, turno)
     return asignatura
-
-
-
+    
 
 def registrarProfesores():
      idCorrecto = False
@@ -81,51 +77,5 @@ def registrarAlumno():
     apellido = input("ingrese Apellido: ")
     alumno = (id, nombre, apellido)
     return alumno
-
-
-# def registrarProfesores(conexion):
-#     idCorrecto = False
-
-#     while not idCorrecto:
-#         id = input("Ingrese ID (6 dígitos): ")
-
-#         if id.isnumeric() and len(id) == 6:
-#             idCorrecto = True
-#             id = int(id)
-#         else:
-#             print("El ID debe ser un número de 6 dígitos. Ingrese nuevamente.")
-
-#     nombre = input("Ingrese Nombre: ")
-#     apellido = input("Ingrese Apellido: ")
-
-#     asignaturas_seleccionadas = []
-#     asignaturas_disponibles = conexion.listarAsignaturas()
-
-#     if asignaturas_disponibles:
-#         print("Asignaturas disponibles:")
-#         for asignatura in asignaturas_disponibles:
-#             print("ID: {0}, Nombre: {1}".format(asignatura[0], asignatura[1]))
-
-#         while True:
-#             id_asignatura = input("Ingrese el ID de una asignatura para asignar al profesor (o presione Enter para finalizar): ")
-#             if id_asignatura == "":
-#                 break
-
-#             if id_asignatura.isnumeric():
-#                 id_asignatura = int(id_asignatura)
-#                 if id_asignatura in [asignatura[0] for asignatura in asignaturas_disponibles]:
-#                     asignaturas_seleccionadas.append(id_asignatura)
-#                 else:
-#                     print("El ID de asignatura ingresado no es válido. Intente nuevamente.")
-#             else:
-#                 print("Ingrese un ID válido.")
-#     else:
-#         print("No hay asignaturas disponibles.")
-
-#     profesor = (id, nombre, apellido, asignaturas_seleccionadas)
-#     return profesor
-
-
-
 
 

@@ -3,6 +3,7 @@ from mysql.connector import Error
 
 class Conexion:
     _instance = None
+    
 
     def __new__(cls):
         if cls._instance is None:
@@ -20,6 +21,8 @@ class Conexion:
             except Error as ex:
                 print("Error al intentar la conexion: {0}".format(ex))
         return cls._instance
+    
+
 
     def listarProfesores(self):
         if self.conexion.is_connected():
@@ -31,6 +34,7 @@ class Conexion:
             except Error as ex:
                 print("Error al intentar la conexion: {0}".format(ex))
 
+
     def listarAsignaturas(self):
      if self.conexion.is_connected(): 
          try:
@@ -40,6 +44,7 @@ class Conexion:
              return resultados
          except Error as ex:
              print("Error al intentar conexion: {0}".format(ex))
+
     
     def listarAlumno(self):
         if self.conexion.is_connected():
@@ -50,6 +55,8 @@ class Conexion:
                 return resultados
             except Error as ex:
                 print("Error al intentar la conexion: {0}".format(ex))
+
+#----------------------------------------------------------------------------------------------------------#
 
 
     def registrarAlumno (self, alumno):
@@ -73,35 +80,38 @@ class Conexion:
                 print("profesor registrado !")
               
             except Error as ex:
-                print("Error al intentar conexion : {0}".format(ex))   
+                print("Error al intentar conexion : {0}".format(ex))  
+                
 
 
 
     def registrarAsignaturas(self, asignatura):
          if self.conexion.is_connected():
+             print(asignatura)
              try:
                  cursor = self.conexion.cursor()
-                 cursor.execute("INSERT INTO asignaturas (id, nombre, turno, id_profesor) VALUES ({0}, '{1}', '{2}','{3}' )".format(asignatura[0], asignatura[1], asignatura[2], asignatura[3]))
+                 cursor.execute("INSERT INTO asignaturas (id, nombre, turno, id_profesor) VALUES ({0}, '{1}', '{2}', NULL)".format(asignatura[0], asignatura[1], asignatura[2]))
+
+                 
                  self.conexion.commit()
                  print("asignatura creada!")
              except Error as ex :
                  print("Error al crear asignatura: {0}".format(ex))  
                        
-    # def registrarAsignaturas(self, asignatura):
-    #     if self.conexion.is_connected():
-    #         try:
-    #             cursor = self.conexion.cursor()
-    #             if len(asignatura) >= 3:
-    #                 if asignatura[2] is not None:
-    #                     cursor.execute("INSERT INTO asignaturas (id, nombre, turno, id_profesor) VALUES ({0}, '{1}', '{2}', '{3}')".format(asignatura[0], asignatura[1], asignatura[2]))
-    #                 else:
-    #                     print("El campo 'id_profesor' no puede estar vacío.")
-    #             else:
-    #                 print("La tupla asignatura no tiene suficientes elementos.")
-    #             self.conexion.commit()
-    #             print("asignatura creada!")
-    #         except Error as ex:
-    #             print("Error al crear asignatura: {0}".format(ex))
+    
+   
+
+    def asignarAsignaturaProfesor(self, id_profesor, id):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                cursor.execute("UPDATE asignaturas SET id_profesor = %s WHERE id = %s", (id_profesor, id))
+                self.conexion.commit()
+                print("Asignatura asignada al profesor correctamente.")
+            except Error as ex:
+                print("Error al asignar asignatura al profesor: {0}".format(ex))
+
+    
 
 
 
