@@ -10,9 +10,9 @@ def menuPrincipal():
             print("1*- Consultar Profesores")
             print("2*- Consultar Asignaturas")
             print("3*- Consultar Alumnos")
-            print("4*- Inscripción de Alumno a Asignatura")
-            print("5*- Baja de Alumno de Asignatura")
-            print("6*- Modificar")
+            print("4*- Inscripcion de Profesores ")
+            print("5*- Inscripcion asignatura ")
+            print("6*- Inscripcion de alumnos")
             print("7*- Salir")
             print("==========================================")
             opcion = int(input("Seleccione una opcion: "))
@@ -40,8 +40,10 @@ def ejecutarOpcion(opcion):
             else:
                 print("no se encontraron profesores")
                 
-        except :
-            print("ocurrio un error....")
+        except Exception as e:
+            print("ocurrio un error....",e)
+
+
 
     elif opcion == 2:
         try:
@@ -53,8 +55,10 @@ def ejecutarOpcion(opcion):
             else:
                 print("no se encontraron asignaturas disponibles")
                 
-        except :
-            print("ocurrio un error....")
+        except Exception as e:
+            print("ocurrio un error....", e)
+
+
     elif opcion == 3:
         try:
             alumnos = conexion.listarAlumno()
@@ -63,15 +67,34 @@ def ejecutarOpcion(opcion):
                 funciones.listarAlumno(alumnos)
             else:
                 print("no se encontraron alumnos ")
-        except:
-            print("woooow compadre rompiste todooo")
-            
+        except Exception as e:
+            print("woooow compadre rompiste todooo", e)
+
+
+
     elif opcion == 4:
-        print("ins de alumo a asig")
+       profesor = funciones.registrarProfesores()
+       try:
+            conexion.registrarProfesores(profesor)
+       except Exception as e:
+            print("Ocurrio un error en la inscripcion de profesores...", e)
+
+
+            
     elif opcion == 5:
-        print("opcion 5")
+        asignatura = funciones.registrarAsignatura()
+        try:
+            conexion.registrarAsignaturas(asignatura)
+        except Exception as e:
+            print("ocurrio algo al agregar una asignatura!", e)
+
+
     elif opcion == 6:
-        print("opcion 6")
+        alumnos = funciones.registrarAlumno()
+        try:
+            conexion.registrarAlumno(alumnos)
+        except Exception as e:
+           print("Ocurrio un error al agregar un alumno!", e)
 
 
   
