@@ -98,7 +98,7 @@ class Conexion:
              except Error as ex :
                  print("Error al crear asignatura: {0}".format(ex))  
                        
-    
+#================================================================================    
    
 
     def asignarAsignaturaProfesor(self, id_profesor, id):
@@ -114,5 +114,5 @@ class Conexion:
     
 
 
-
+        
 

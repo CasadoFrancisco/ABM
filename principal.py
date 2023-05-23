@@ -7,6 +7,7 @@ def menuPrincipal():
     while continuar:
         opcionCorrecta = False
         while not opcionCorrecta:
+            
             print("============= MENU PRINCIPAL =============")
             print("1*- Consultar Profesores")
             print("2*- Consultar Asignaturas")
@@ -15,10 +16,6 @@ def menuPrincipal():
             print("5*- Inscripcion asignatura ")
             print("6*- Inscripcion de alumnos")
             print("7*- Asignar asignatura a profesor")
-            print("")
-            print("")
-            print("")
-            print("")
             print("10*- Salir")
             print("==========================================")
             opcion = int(input("Seleccione una opcion: "))
@@ -102,12 +99,29 @@ def ejecutarOpcion(opcion):
         except Exception as e:
            print("Ocurrio un error al agregar un alumno!", e)
 
-    elif opcion == 7:
 
+    elif opcion == 7:
         try:
-            print
+            profesores = conexion.listarProfesores()
+            if len(profesores) > 0:
+                funciones.listarProfesores(profesores)
+                id_profesor = input("Ingrese el ID del profesor: ")
+                asignaturas = conexion.listarAsignaturas()
+                if len(asignaturas) > 0:
+                    funciones.listarAsignaturas(asignaturas)
+                    id_asignatura = input("Ingrese el ID de la asignatura: ")
+                    conexion.asignarAsignaturaProfesor(id_profesor, id_asignatura)
+                    print("Asignatura asignada al profesor correctamente.")
+                else:
+                    print("No se encontraron asignaturas.")
+            else:
+                print("No se encontraron profesores.")
         except Exception as e:
-            print("Ocurrio un error al agregar un alumno!", e)
+            print("Ocurrió un error:", e)
+            
+     
+     
+
 
 
   
